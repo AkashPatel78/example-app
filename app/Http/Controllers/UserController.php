@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +30,8 @@ class UserController extends Controller
 
             ->addColumn('action', function ($data) {
                 $updateButton = '<a href="#" id="' . $data->id . '" class="btn btn-outline-info editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">View</a>';
-                return $updateButton ;
-             })
+                return $updateButton;
+            })
 
             ->rawColumns(['id', 'name', 'email', 'action'])
             ->make(true);
@@ -41,8 +42,8 @@ class UserController extends Controller
         $auth_id = Auth::user()->id;
         $request->id;
         $data = DB::table('orders')->join('users', 'users.id', 'orders.user_id')
-        ->join('books', 'books.id', 'orders.book_id')
-        ->select('users.name as user', 'books.name as bookName', 'books.id', 'books.name', 'books.avatar','books.pdf','orders.id as ord_id')->where('user_id', $auth_id)->get();
+            ->join('books', 'books.id', 'orders.book_id')
+            ->select('users.name as user', 'books.name as bookName', 'books.id', 'books.name', 'books.avatar', 'books.pdf', 'orders.id as ord_id')->where('user_id', $auth_id)->get();
 
         return response()->json($data);
     }
@@ -57,6 +58,6 @@ class UserController extends Controller
             'status' => 200,
         ]);
     }
-
+    //Git hub njsdnjsndj
 
 }
